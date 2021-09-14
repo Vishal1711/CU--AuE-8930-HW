@@ -1,16 +1,8 @@
-/*  Nick Sweeting 2013/10/08
-    Student List (OOP)
-    MIT Lisence
-    g++ Vectors.cpp -o main && ./main
-
-    Example of using vectors to store a list of students and their GPAs.
-    It is referred from: https://github.com/pirate/Cpp-Data-Structures/
-*/
-
 #include <stdlib.h>
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <algorithm>
 using namespace std;
 
 struct Student {
@@ -22,7 +14,10 @@ struct Student {
 
 void printStudents(vector<Student> students) {
     for (int i=0;i<students.size();i++) {
-        cout << students[i].firstName << " " << students[i].lastName << ", " << students[i].studentID << ", " << floor(students[i].GPA * 100 + 0.5)/100 << endl;
+        cout << students[i].firstName <<  endl ;
+        cout << students[i].lastName << endl ;
+        cout << students[i].studentID << endl  ;
+        cout << students[i].GPA  << endl;
     }
 };
 
@@ -51,15 +46,25 @@ vector<Student> delStudent(vector<Student> students) {
 
     cout << "ID to delete: " << studentIDtoDel << endl;
 
-    vector<Student> newStudents;
-    for (int a=0; a < students.size(); a++) {
-        if (students[a].studentID != studentIDtoDel) {
-            newStudents.push_back(students[a]);
+    // object is removed from vector and same vector returned
+    bool isFound = false;
+    vector <Student>::iterator it3;
+    for (it3 = students.begin(); it3 != students.end(); ++it3) {
+        if (it3->studentID == studentIDtoDel) {
+                it3 = students.erase(it3);
+                --it3;
+                isFound = true;
         }
+
+    }
+    if (!isFound) {
+    cout << "ID # not found" << endl;
     }
 
-    return newStudents;
+
+    return students;
 }
+
 
 int main() {
     vector<Student> students;
