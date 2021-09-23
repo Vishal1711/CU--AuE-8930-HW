@@ -1,61 +1,90 @@
-/*  Nick Sweeting 2013/10/09
-    References vs Values in C++
-    MIT License
-
-    Takes input and removes puctuation and spaces, using two different methods.
-    It is referred from: https://github.com/pirate/Cpp-Data-Structures/
-*/
-
 #include <stdlib.h>
 #include <iostream>
+#include <vector>
+#include <cmath>
+#include <algorithm>
 using namespace std;
 
-// returns true if input character q is puctuation, else false
-bool ispunctuation(char q) {
-    char punct[31] = ".!-_? <>,$#@=+*&^$!;:'()[]{}|`";
-    int p;
-    for (p=0;p<30;p++) if (q == punct[p]) return true;
-    return false;
+struct Student {
+    string firstName;
+    string lastName;
+    int studentID;
+    double GPA;
+};
+
+void printStudents(vector<Student> students) {
+    for (int i=0;i<students.size();i++) {
+        cout << students[i].firstName <<  endl ;
+        cout << students[i].lastName << endl ;
+        cout << students[i].studentID << endl  ;
+        cout << students[i].GPA  << endl;
+    }
+};
+
+vector<Student> addStudent(vector<Student> students) {
+
+    Student newStudent;
+
+    cout << "First Name: ";
+    cin >> newStudent.firstName;
+    cout << "Last Name: ";
+    cin >> newStudent.lastName;
+    cout << "ID: ";
+    cin >> newStudent.studentID;
+    cout << "GPA: ";
+    cin >> newStudent.GPA;
+
+    students.push_back(newStudent);
+
+    return students;
 }
 
-char* modifyAndCopy(char *raw_input) {
-    // input cleanup
-    char* newarray = new char[80];
-    int q, position = 0;
-    for (q=0;q<80;q++) {
-        if (ispunctuation(raw_input[q])) true;
-        else {
-            newarray[position] = raw_input[q];
-            position++;
+vector<Student> delStudent(vector<Student> students) {
+    int studentIDtoDel;
+    cout << "ID of student to delete: ";
+    cin >> studentIDtoDel;
+
+    cout << "ID to delete: " << studentIDtoDel << endl;
+
+    // object is removed from vector and same vector returned
+    bool isFound = false;
+    vector <Student>::iterator it3;
+    for (it3 = students.begin(); it3 != students.end(); ++it3) {
+        if (it3->studentID == studentIDtoDel) {
+                it3 = students.erase(it3);
+                --it3;
+                isFound = true;
         }
+
     }
-    return newarray;
+    if (!isFound) {
+    cout << "ID # not found" << endl;
+    }
+
+
+    return students;
 }
 
-char* modifyInPlace(char *raw_input) {
-    // input cleanup
-    int q, position = 0;
-    for (q=0;q<80;q++) {
-        if (ispunctuation(raw_input[q])) true;
-        else {
-            raw_input[position] = raw_input[q];
-            position++;
-        }
-    }
-    return raw_input;
-}
 
 int main() {
-    // user input
-    char raw_input[80] = {0};
-    cout << "Please input something with punctuation in it: ";
-    cin.getline(raw_input,80);
+    vector<Student> students;
+    string input;
 
-    cout << "Modify and Copy: " << endl;
-    cout << "Original: " << raw_input << endl;
-    cout << "Modified: " << modifyAndCopy(raw_input) << endl << endl;
+    while (true) {
+        cout<<"Input operation: ";
+        cin >> input;
 
-    cout << "Modify in Place: " << endl;
-    cout << "Original: " << raw_input << endl;
-    cout << "Modified: " << modifyInPlace(raw_input) << endl;
+        if (input == "ADD" || input == "a" || input == "add") {
+            students = addStudent(students);
+        }
+        else if (input == "PRINT" || input == "p" || input == "print") {
+            printStudents(students);
+        }
+        else if (input == "DELETE" || input == "d" || input == "delete") {
+            students = delStudent(students);
+        }
+        else if (input == "QUIT" || input == "q" || input == "quit") {
+            return 0;
+        }
+    }
 }
