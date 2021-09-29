@@ -99,3 +99,5 @@ res = LinkedList()
 res.addTwoLists(first.head, second.head)
 print ("\nResultant list is ")
 res.printList()
+
+#Time and space complexity are O(n) i.e. constant time
