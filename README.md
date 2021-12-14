@@ -11,3 +11,12 @@ Homework 2
 2. C++ Programming Exercise
 
 Homework 3
+1. Object Oriented Programming
+2. Algorithms
+3. Data Structures
+4. Numpy and OpenCV library
+5. A* path searching algorithm - Occupancy gridmap-based and Quadtree map-based 
+6. Dijkstra path searching algorithm - Occupancy gridmap-based and Quadtree map-based 
+
+Homework 4
+1. 
