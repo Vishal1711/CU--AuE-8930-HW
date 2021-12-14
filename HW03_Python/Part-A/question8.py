@@ -7,7 +7,7 @@ from scipy import fftpack
 fre  = 5
 #Sample rate
 fre_samp = 50
-t = np.linspace(0, 2, 2 * fre_samp, endpoint = False )
+t = np.linspace(0, 2, 2 * fre_samp)
 a = np.sin(fre  * 2 * np.pi * t)
 figure, axis = plt.subplots()
 axis.plot(t, a)
