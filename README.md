@@ -19,4 +19,9 @@ Homework 3
 6. Dijkstra path searching algorithm - Occupancy gridmap-based and Quadtree map-based 
 
 Homework 4
-1. 
+1. Parallel computation using PyCUDA
+2. Image Processing With PyCUDA
+3. Multithreading in Python
+
+Homework 5
+1. Writing software that controls a (simulated) robot using ROS
