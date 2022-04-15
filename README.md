@@ -24,4 +24,4 @@ Homework 4
 3. Multithreading in Python
 
 Homework 5
-1. Writing software that controls a (simulated) robot using ROS
+1. Writing script that controls a (simulated) robot using ROS
